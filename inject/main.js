@@ -17,7 +17,6 @@ function openToolsacNav() {
 
 function closeToolsacNav() {
   document.getElementById("toolsac-sidebar").style.width = "0";
-  document.getElementById("toolsac-main").style.marginLeft = "0";
   document.getElementById("toolsac-main").style.filter = "";
 }
 
@@ -25,7 +24,7 @@ var loadedResources = function () {
   document.body.appendChild(
     quantum.createElement("link", {
       rel: "stylesheet",
-      href: prefix + "/main.css"
+      href: prefix + "/main.css",
     }).message
   );
   document.body.id += "toolsac-main";
@@ -36,8 +35,7 @@ var loadedResources = function () {
     "https://cdn.jsdelivr.net/npm/toastify-js",
     function () {
       Toastify({
-        text:
-          "Successfully loaded Toolsac. \n Click this notification or press the backquote key (`) to show the menu",
+        text: "Successfully loaded Toolsac. \n Click this notification or press the backquote key (`) to show the menu",
         duration: 3000,
         destination: "javascript:(function()%7BopenToolsacNav()%7D)()%3B",
         newWindow: false,
@@ -46,15 +44,15 @@ var loadedResources = function () {
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)"
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
         },
-        onClick: function () {} // Callback after click
+        onClick: function () {}, // Callback after click
       }).showToast();
       document.body.addEventListener("keydown", (event) => {
-        if (event.isComposing || event.keyCode === 229) {
+        if (event.isComposing || event.keyCode === 225) {
           return;
         }
-        if (event.keyCode == 192) {
+        if (event.code === "Backquote") {
           openToolsacNav();
         }
       });
@@ -67,7 +65,7 @@ var loadedResources = function () {
   document.querySelector("html").appendChild(
     quantum.createElement("div", {
       id: "toolsac-sidebar",
-      class: "toolsac-sidebar"
+      class: "toolsac-sidebar",
     }).message
   );
   document.querySelector("#toolsac-sidebar").appendChild(
@@ -75,7 +73,6 @@ var loadedResources = function () {
       "div",
       {
         id: "toolsac-sidebar-heading",
-        class: ""
       },
       "Toolsac"
     ).message
@@ -86,7 +83,7 @@ var loadedResources = function () {
       {
         href: "javascript:void(0)",
         onclick: "closeToolsacNav()",
-        class: "toolsac-closebtn"
+        class: "toolsac-closebtn",
       },
       "x"
     ).message
